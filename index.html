@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gavin Newsom for Governor | American Renewal Platform</title>
+    <!-- Importing Modern Fonts (Lato for body, Montserrat for headings) -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* * 2016 POLITICAL CAMPAIGN AESTHETIC - AMERICAN RENEWAL *
+         * Focus: Bold colors, fixed backgrounds, dynamic components (Tabs, Timeline, Sticky CTA)
+         */
+        
+        :root {
+            --primary-blue: #0055a4; /* Campaign Blue */
+            --dark-blue: #00305e;
+            --accent-red: #E91D0E; /* Campaign Red/Action */
+            --frontier-gold: #fdb927; /* Accent Color */
+            --text-color: #333333;
+            --light-gray: #f0f2f5;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Lato', Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* UTILITIES & ANIMATIONS */
+        .container-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+        
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+        
+        /* HEADER & NAVIGATION */
+        #header-wrapper {
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 2px solid var(--accent-red);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        #header {
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 32px;
+            letter-spacing: -2px;
+            color: var(--dark-blue);
+            text-transform: uppercase;
+        }
+        
+        .logo-text .year { color: var(--accent-red); font-size: 24px; vertical-align: middle; margin-left: 5px;}
+
+        #nav a {
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #555;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s, border-bottom 0.3s;
+        }
+        
+        #nav a.active { color: var(--primary-blue); border-bottom: 3px solid var(--primary-blue); }
+        
+        /* HERO SECTION - Fixed Image Background */
+        .hero-banner {
+            background-image: linear-gradient(180deg, rgba(0, 48, 94, 0.95), rgba(0, 85, 164, 0.85)), 
+                              url('https://placehold.co/1920x600/00305e/ffffff/png?text=NEWSOM+IN+SACRAMENTO'); 
+            background-size: cover;
+            background-attachment: fixed; 
+            background-position: center 30%;
+            color: white;
+            padding: 180px 0 200px 0;
+            text-align: center;
+            position: relative;
+            /* Sharp, aggressive bottom edge for a modern look */
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+            margin-bottom: -100px;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 80px;
+            font-weight: 900;
+            margin: 0 0 10px 0;
+            text-shadow: 0 6px 15px rgba(0,0,0,0.6);
+            letter-spacing: -4px;
+            line-height: 1;
+        }
+
+        .hero-content p {
+            font-size: 32px;
+            font-weight: 300;
+            margin: 0 auto 50px auto;
+            max-width: 900px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background-color: var(--accent-red);
+            color: white;
+            padding: 18px 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 18px;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            border: 2px solid white;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            background-color: #ff3828;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+        }
+        
+        /* MAIN CONTENT LAYOUT */
+        #main-wrapper {
+            background: #fff;
+            padding-top: 150px;
+            padding-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content-flex {
+            display: flex;
+            gap: 40px;
+        }
+
+        #content-column { flex: 3; }
+        #sidebar-column { flex: 1; }
+        
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            color: var(--dark-blue);
+            font-size: 44px;
+            margin-top: 0;
+            margin-bottom: 40px;
+        }
+        
+        /* CARD STYLING */
+        .card {
+            background: #fff;
+            border: 1px solid #eef;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        /* STICKY ACTION BAR */
+        #action-bar {
+            position: sticky;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--frontier-gold);
+            padding: 15px 0;
+            z-index: 1500;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        #action-bar h4 {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            color: var(--dark-blue);
+            display: inline-block;
+            margin-right: 30px;
+            font-size: 20px;
+            font-weight: 900;
+        }
+        
+        #action-bar .action-btn {
+            background: var(--accent-red);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.3s;
+        }
+        
+        #action-bar .action-btn:hover {
+            background: var(--dark-blue);
+            transform: scale(1.05);
+        }
+
+        /* AGENDA TABS */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            border-bottom: 4px solid var(--light-gray);
+            margin-bottom: 30px;
+        }
+        
+        .tab-button {
+            padding: 15px 25px;
+            cursor: pointer;
+            background: #f4f7f9;
+            border: none;
+            border-radius: 10px 10px 0 0;
+            margin-right: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #666;
+            transition: all 0.3s;
+            font-size: 16px;
+            outline: none;
+            border-bottom: 4px solid transparent;
+        }
+        
+        .tab-button:hover { background: #e9ecef; color: var(--primary-blue); }
+        
+        .tab-button.active {
+            color: var(--primary-blue);
+            background: white;
+            border-bottom: 4px solid var(--primary-blue);
+            transform: translateY(2px);
+            box-shadow: 0 -2px 10px rgba(0, 85, 164, 0.1);
+        }
+        
+        .tab-content { padding: 20px; border: 1px solid #eee; border-radius: 0 0 10px 10px; border-top: none;}
+        .tab-content h4 { color: var(--accent-red); margin-top: 0; font-family: 'Montserrat', sans-serif; font-size: 24px;}
+        .tab-content ul { list-style: none; padding-left: 0; }
+        .tab-content ul li { margin-bottom: 15px; padding-left: 20px; position: relative;}
+        .tab-content ul li i { 
+            position: absolute; 
+            left: 0; 
+            color: var(--primary-blue); 
+            font-size: 18px;
+            animation: pulse 1s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            from { transform: scale(1); opacity: 0.8; }
+            to { transform: scale(1.1); opacity: 1; }
+        }
+
+        /* TIMELINE STYLING */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+            margin-left: 20px;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--primary-blue);
+            left: 0;
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 5px;
+            left: -8px;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 2px var(--primary-blue);
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: var(--dark-blue);
+            font-size: 14px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+
+        /* FOOTER */
+        #footer {
+            background-color: var(--dark-blue);
+            color: rgba(255,255,255,0.8);
+            padding: 60px 0;
+            font-size: 14px;
+            border-top: 8px solid var(--accent-red);
+            z-index: 10;
+            position: relative;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .content-flex { flex-direction: column; }
+            #header { flex-direction: column; padding-bottom: 20px; }
+            .hero-content h1 { font-size: 52px; letter-spacing: -2px; }
+            .hero-content p { font-size: 22px; }
+            #action-bar { padding: 10px; }
+            #action-bar h4 { display: block; margin-right: 0; margin-bottom: 10px; }
+            .tabs { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    
+    <!-- NAVIGATION -->
+    <div id="header-wrapper">
+        <div class="container-inner">
+            <header id="header">
+                <a href="#home" class="logo-container" onclick="showPage('home')">
+                    <div class="logo-text">Newsom<span class="year">2016</span>
+                        <div style="font-size: 10px; letter-spacing: 3px; color: #777; font-weight: 700;">GOVERNOR</div>
+                    </div>
+                </a>
+                <nav id="nav">
+                    <a href="#home" class="nav-link active" data-page="home" onclick="showPage('home')">Home</a>
+                    <a href="#about" class="nav-link" data-page="about" onclick="showPage('about')">The Governor</a>
+                    <a href="#agenda" class="nav-link" data-page="agenda" onclick="showPage('agenda')">Platform</a>
+                    <a href="#volunteer" class="nav-link" data-page="volunteer" onclick="showPage('volunteer')">Mobilize</a>
+                    <a href="#donate" class="nav-link hero-btn" data-page="donate" onclick="showPage('donate')" style="margin-left: 20px; padding: 10px 25px; font-size: 16px;">Donate Now</a>
+                </nav>
+            </header>
+        </div>
+    </div>
+
+    <!-- HOME PAGE CONTENT -->
+    <div id="home" class="page-content">
+        
+        <!-- HERO SECTION (Fixed Background Image) -->
+        <div class="hero-banner">
+            <div class="container-inner">
+                <div class="hero-content fade-in-section">
+                    <h1>American Renewal</h1>
+                    <p>"If you work hard, the Commonwealth will work for you."</p>
+                    <a href="#agenda" onclick="showPage('agenda')" class="hero-btn">See The Full Platform</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="main-wrapper">
+            <div class="container-inner">
+                
+                <div class="content-flex">
+                    <!-- LEFT COLUMN - News & Updates -->
+                    <div id="content-column">
+                        
+                        <!-- PLATFORM SUMMARY CARD -->
+                        <div class="card fade-in-section" style="border-left: 8px solid var(--primary-blue);">
+                            <h2>A New Deal for the New Millennium</h2>
+                            <p class="lead" style="font-size: 18px; color: #555;">
+                                Governor Newsom believes that government must be the **stabilizing force** in times of crisis, investing in people and infrastructure while maintaining fiscal responsibility through progressive taxation and smart spending.
+                            </p>
+                            <p style="font-size: 16px;">
+                                This campaign is about **Bold Action, Shared Prosperity, and American Renewal**. We are charting a course for the Commonwealth where every town has more jobs, every family has more hope, and every dream has more chances.
+                            </p>
+                        </div>
+                        
+                        <!-- LATEST POLICY NEWS -->
+                        <div class="card fade-in-section">
+                            <h2 style="font-size: 32px; border-bottom: 2px solid var(--accent-red); padding-bottom: 10px; margin-bottom: 20px;">Headlines from the Trail</h2>
+                            
+                            <div style="border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px;">
+                                <h3 style="margin: 0 0 5px 0; color: var(--dark-blue);">Newsom Unveils $1B Trade School Investment</h3>
+                                <p style="color: #666; font-size: 14px;"><i class="far fa-clock"></i> Dec 15, 2016 &nbsp;|&nbsp; <i class="fas fa-hammer"></i> Economic Policy</p>
+                                <p>The Governor announced the largest investment in technical education in a generation, fulfilling a promise from the 'American Worker First Act'.</p>
+                            </div>
+                            
+                            <div style="padding-bottom: 15px;">
+                                <h3 style="margin: 0 0 5px 0; color: var(--dark-blue);">The Stars and Stripes Forever Act Receives Bipartisan Support</h3>
+                                <p style="color: #666; font-size: 14px;"><i class="far fa-clock"></i> Dec 12, 2016 &nbsp;|&nbsp; <i class="fas fa-rocket"></i> Space & Innovation</p>
+                                <p>Plans to double the state space exploration budget and establish a regional 'Space Coast' are moving forward, projected to create 200,000 new jobs.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT COLUMN (SIDEBAR) -->
+                    <div id="sidebar-column">
+                        
+                        <!-- VOLUNTEER FORM (Enhanced Look) -->
+                        <div class="card fade-in-section" style="background: var(--primary-blue); color: white; border: none;">
+                            <h3 style="color: white; margin-top: 0; text-align: center; border-bottom: 2px solid var(--frontier-gold); padding-bottom: 10px;"><i class="fas fa-users-gear" style="color: var(--frontier-gold); margin-right: 10px;"></i>Mobilize Your Community</h3>
+                            <p style="font-size: 14px; margin-bottom: 20px; color: rgba(255,255,255,0.8); text-align: center;">Get started with phone banking or local outreach today.</p>
+                            
+                            <div class="input-group">
+                                <input type="text" placeholder="Your Name" required style="border-radius: 4px;">
+                            </div>
+                            <div class="input-group">
+                                <input type="email" placeholder="Email Address" required style="border-radius: 4px;">
+                            </div>
+                            
+                            <button class="hero-btn" style="width: 100%; border: none; background: var(--accent-red); color: white; margin-top: 10px;" onclick="showSubmissionMessage('volunteer')">Sign Up To Volunteer</button>
+                        </div>
+
+                        <!-- SOCIAL MEDIA INTERACTION (Clickable) -->
+                        <div class="card fade-in-section" style="text-align: center;">
+                            <h3 style="font-size: 20px; color: var(--dark-blue); margin-top: 0;">#AmericanRenewal</h3>
+                            <div style="display: flex; justify-content: space-around; margin-top: 20px;">
+                                <i class="fab fa-twitter fa-3x" style="color: #1DA1F2; cursor: pointer;" title="Join the Twitter Conversation"></i>
+                                <i class="fab fa-facebook fa-3x" style="color: #3b5998; cursor: pointer;" title="Share on Facebook"></i>
+                                <i class="fab fa-instagram fa-3x" style="color: #E1306C; cursor: pointer;" title="View Instagram"></i>
+                            </div>
+                            <button style="width: 100%; margin-top: 20px; padding: 10px; background: var(--light-gray); border: none; border-radius: 6px; font-weight: 700; color: var(--dark-blue);" onclick="showSubmissionMessage('social')">Post Your Story</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- AGENDA PAGE - TABBED PLATFORM -->
+    <div id="agenda" class="page-content" style="display: none; padding-top: 50px;">
+        <div class="container-inner">
+            <div class="card fade-in-section" style="padding: 0;">
+                <div style="padding: 30px;">
+                    <h2>The American Renewal Platform</h2>
+                    <p style="font-size: 18px;">A comprehensive, investment-driven strategy for a prosperous and secure Commonwealth.</p>
+                </div>
+                
+                <!-- Tab Buttons -->
+                <div class="tabs" style="padding: 0 30px;">
+                    <button class="tab-button active" data-tab="economy">
+                        <i class="fas fa-hand-holding-dollar"></i> Economic Renewal
+                    </button>
+                    <button class="tab-button" data-tab="healthcare">
+                        <i class="fas fa-hospital"></i> Health & Security
+                    </button>
+                    <button class="tab-button" data-tab="education">
+                        <i class="fas fa-graduation-cap"></i> Opportunity Investment
+                    </button>
+                    <button class="tab-button" data-tab="space">
+                        <i class="fas fa-rocket"></i> Space & Tech
+                    </button>
+                </div>
+
+                <!-- Tab Contents -->
+                <div id="tab-content-container">
+                    <!-- 1. ECONOMIC RENEWAL (Based on Tax/Worker Acts) -->
+                    <div class="tab-content" id="tab-economy">
+                        <h4>The American Worker First Act & Progressive Taxation</h4>
+                        <p>We will restructure our tax code to reward the middle class and ensure large corporations pay their fair share, fueling investments in the American worker.</p>
+                        <ul>
+                            <li><i class="fas fa-bolt"></i> **Corporate Tax Increase:** Raise corporate tax rate from 38% to **42% for large corporations**.</li>
+                            <li><i class="fas fa-bolt"></i> **Minimum Wage:** Raise the Federal minimum wage to **$8.50/hour** through a structured phase-in.</li>
+                            <li><i class="fas fa-bolt"></i> **Mandatory Paid Time Off:** Establish **4 weeks paid vacation** and **8 weeks paid family leave** for ALL workers.</li>
+                            <li><i class="fas fa-bolt"></i> **Federal Jobs Guarantee:** A commitment that **"Every American who wants to work, works"**.</li>
+                            <li><i class="fas fa-bolt"></i> **Retraining Vouchers:** Provide **$10,000 retraining vouchers** for displaced workers in transitioning industries.</li>
+                            <li><i class="fas fa-bolt"></i> **Apprentice America:** Fund **500,000 paid apprenticeships** to close the skills gap.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 2. HEALTHCARE REFORM (Based on American Health Security Act) -->
+                    <div class="tab-content" id="tab-healthcare" style="display: none;">
+                        <h4>The American Health Security Act: Universal Coverage</h4>
+                        <p>Healthcare is a right, not a privilege. Our plan creates a resilient, cost-effective system guaranteeing care for everyone.</p>
+                        <ul>
+                            <li><i class="fas fa-heartbeat"></i> **Single-Payer System:** Phase in a **single-payer system over 4 years**.</li>
+                            <li><i class="fas fa-heartbeat"></i> **Medicaid Expansion:** **Immediate expansion of Medicaid** to cover all unemployed citizens.</li>
+                            <li><i class="fas fa-heartbeat"></i> **Drug Price Negotiation:** Implement **Federal negotiation of prescription drug prices** to lower costs immediately.</li>
+                            <li><i class="fas fa-heartbeat"></i> **Funding:** The $180 Billion annual cost will be funded through a modest **payroll tax increase**.</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 3. EDUCATION (Based on Opportunity Investment Initiative) -->
+                    <div class="tab-content" id="tab-education" style="display: none;">
+                        <h4>The Opportunity Investment Initiative: Pre-K to College</h4>
+                        <p>Investing in education is the best stimulus. We are raising the federal role to ensure quality education is guaranteed regardless of zip code.</p>
+                        <ul>
+                            <li><i class="fas fa-school"></i> **Teacher Program:** Create a Federal jobs program placing **100,000 teachers in underserved areas**.</li>
+                            <li><i class="fas fa-school"></i> **Pell Grants:** Expand **Pell Grants by 40%** to assist low-income students.</li>
+                            <li><i class="fas fa-school"></i> **Free Community College:** Make **community college tuition-free** for all residents.</li>
+                            <li><i class="fas fa-school"></i> **Universal Pre-K:** Establish **Federal infrastructure for universal pre-K**.</li>
+                            <li><i class="fas fa-school"></i> **Curriculum Mandate:** Mandatory financial literacy and constitutional education in all high schools.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 4. SPACE & TECHNOLOGY (Based on Stars and Stripes Forever Act) -->
+                    <div class="tab-content" id="tab-space" style="display: none;">
+                        <h4>The Stars and Stripes Forever Act: Space and Tech Leadership</h4>
+                        <p>The next frontier is space. Investing in NASA creates high-paying jobs and ensures our technological leadership for decades to come.</p>
+                        <ul>
+                            <li><i class="fas fa-rocket"></i> **NASA Budget:** **Double NASA's budget to $30 Billion** annually.</li>
+                            <li><i class="fas fa-rocket"></i> **New Space Goals:** Establish a **Moon base by 2022** and a **Mars colony by 2030** (adjusted for 2016 timeframe).</li>
+                            <li><i class="fas fa-rocket"></i> **Job Creation:** Generate **200,000 new aerospace jobs** across the Commonwealth.</li>
+                            <li><i class="fas fa-rocket"></i> **Infrastructure:** Expand the "Space Coast" with new launch facilities and university space partnerships.</li>
+                            <li><i class="fas fa-rocket"></i> **Private Incentives:** Provide **private space industry tax incentives**.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ABOUT PAGE (Using Timeline) -->
+    <div id="about" class="page-content" style="display: none; padding-top: 50px;">
+        <div class="container-inner">
+            <div class="card fade-in-section">
+                <h2>The Governor's Journey</h2>
+                <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px;">
+                        <p class="lead" style="font-size: 20px; color: var(--primary-blue);">Gavin Newsom's political career has always been driven by an understanding that government must adapt to meet the challenges of the future.</p>
+                        <p>He championed bold reforms as a Mayor, modernized the economic strategy as Lt. Governor, and now brings a renewed focus on massive state investment in infrastructure, education, and energy independence.</p>
+                    </div>
+                    <div style="flex: 1; min-width: 300px;">
+                        <div style="width: 100%; height: 250px; background-color: #ddd; border-radius: 8px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
+                            <!-- Placeholder image to show Newsom in action -->
+                            <img src="https://placehold.co/500x300/fdb927/00305e?text=Newsom+Signing+Legislation" alt="Newsom" style="width: 100%; height: auto; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="font-size: 28px; color: var(--dark-blue); margin-top: 50px; border-top: 1px solid #eee; padding-top: 30px;">A Timeline of Public Service</h3>
+                
+                <ul class="timeline">
+                    <li class="timeline-item fade-in-section" style="transition-delay: 0.1s;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2000-2004</div>
+                        <strong>Board of Supervisors:</strong> Key advocate for progressive housing reforms.
+                    </li>
+                    <li class="timeline-item fade-in-section" style="transition-delay: 0.2s;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2004-2011</div>
+                        <strong>Mayor:</strong> First to advance major social equity and environmental standards.
+                    </li>
+                    <li class="timeline-item fade-in-section" style="transition-delay: 0.3s;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2011-2019</div>
+                        <strong>Lt. Governor:</strong> Focused on state-wide economic development and business climate reform.
+                    </li>
+                    <li class="timeline-item fade-in-section" style="transition-delay: 0.4s;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2019-Present</div>
+                        <strong>Governor:</strong> Championing the largest infrastructure and education investment package in the state's history.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- VOLUNTEER PAGE (Full Page View) -->
+    <div id="volunteer" class="page-content" style="display: none; padding-top: 50px;">
+        <div class="container-inner">
+            <div class="card fade-in-section" style="max-width: 700px; margin: 0 auto; text-align: center;">
+                <h2>Lead the Ground Game</h2>
+                <p style="margin-bottom: 30px;">Your energy is the engine of our renewal. Sign up to make calls, knock on doors, or organize locally.</p>
+                
+                <form id="full-volunteer-form">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="input-group"><input type="text" placeholder="Full Name" required style="padding: 15px; border-radius: 8px;"></div>
+                        <div class="input-group"><input type="email" placeholder="Email Address" required style="padding: 15px; border-radius: 8px;"></div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="input-group"><input type="tel" placeholder="Phone Number" required style="padding: 15px; border-radius: 8px;"></div>
+                        <div class="input-group"><input type="text" placeholder="Zip Code" required style="padding: 15px; border-radius: 8px;"></div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <select style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;">
+                            <option>I want to volunteer for...</option>
+                            <option>Phone Banking (Weekly)</option>
+                            <option>Canvassing (Weekends)</option>
+                            <option>Data & Tech Support</option>
+                            <option>Host a Local Event</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <textarea rows="4" placeholder="Optional: Tell us why you support American Renewal." style="padding: 15px; border-radius: 8px;"></textarea>
+                    </div>
+
+                    <button type="button" class="hero-btn" style="width: 100%; border: none; background: var(--primary-blue); color: white;" onclick="showSubmissionMessage('volunteer')">Confirm Volunteer Application</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- DONATE PAGE -->
+    <div id="donate" class="page-content" style="display: none; padding-top: 50px;">
+        <div class="container-inner">
+            <div class="card fade-in-section" style="max-width: 600px; margin: 0 auto; text-align: center;">
+                <h2 style="border: none;">Invest in Renewal</h2>
+                <p style="margin-bottom: 30px;">Contribute to help us bring the American Renewal Platform to every corner of the Commonwealth.</p>
+                
+                <div class="donation-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 25px;">
+                    <!-- Donation buttons use inline CSS for visual distinctiveness -->
+                    <button class="donation-btn" data-amount="25" onclick="selectAmount(this, 25)">$25</button>
+                    <button class="donation-btn active" data-amount="50" onclick="selectAmount(this, 50)">$50</button>
+                    <button class="donation-btn" data-amount="100" onclick="selectAmount(this, 100)">$100</button>
+                    <button class="donation-btn" data-amount="250" onclick="selectAmount(this, 250)">$250</button>
+                    <button class="donation-btn" data-amount="500" onclick="selectAmount(this, 500)">$500</button>
+                    <button class="donation-btn" data-amount="1000" onclick="selectAmount(this, 1000)">$1,000</button>
+                </div>
+                
+                <input type="text" id="custom-amount" placeholder="Other Amount ($)" value="$50" style="width: 100%; padding: 15px; margin-bottom: 20px; border: 2px solid var(--primary-blue); border-radius: 8px; font-size: 18px; text-align: center;">
+                
+                <button class="hero-btn" style="width: 100%; border: none; background: var(--accent-red); color: white;" onclick="showSubmissionMessage('donate')">Secure Contribution Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- STICKY CALL TO ACTION BAR -->
+    <div id="action-bar">
+        <div class="container-inner" style="display: flex; justify-content: center; align-items: center; gap: 30px;">
+            <h4>Ready to stand for American Renewal?</h4>
+            <a href="#donate" onclick="showPage('donate')" class="action-btn">Contribute</a>
+            <a href="#volunteer" onclick="showPage('volunteer')" class="action-btn" style="background: var(--dark-blue);">Volunteer</a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="footer">
+        <div class="container-inner">
+            <div style="text-align: center; color: rgba(255,255,255,0.6);">
+                <i class="fas fa-flag-usa fa-2x" style="color: var(--frontier-gold); margin-bottom: 15px;"></i>
+                <p>Paid for by Newsom for Governor 2016. <br>The Rockefeller Guarantee: If you work hard, the Commonwealth will work for you.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Custom Modal/Message Box (Replaces alert()) -->
+    <div id="custom-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; justify-content: center; align-items: center;">
+        <div style="background: white; padding: 40px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); max-width: 400px; text-align: center;">
+            <h3 id="modal-title" style="color: var(--primary-blue); font-family: 'Montserrat', sans-serif;"></h3>
+            <p id="modal-message"></p>
+            <button onclick="document.getElementById('custom-modal').style.display = 'none';" style="background: var(--accent-red); color: white; border: none; padding: 10px 30px; border-radius: 5px; margin-top: 15px; cursor: pointer;">Close</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // --- PAGE NAVIGATION LOGIC ---
+    function showPage(pageId) {
+        // Hide all pages
+        document.querySelectorAll('.page-content').forEach(page => {
+            page.style.display = 'none';
+        });
+
+        // Show target page
+        const target = document.getElementById(pageId);
+        if (target) {
+            target.style.display = 'block';
+            window.scrollTo(0, 0);
+            
+            // Re-trigger animations
+            setTimeout(() => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target); // Stop observing once visible
+                        }
+                    });
+                }, { threshold: 0.1 }); 
+                
+                document.querySelectorAll('.fade-in-section').forEach((section) => {
+                    section.classList.remove('is-visible'); 
+                    observer.observe(section);
+                });
+            }, 100);
+        }
+
+        // Update Nav State
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+            if (link.dataset.page === pageId) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // --- INTERACTION FUNCTIONS ---
+    
+    // Shows custom message box instead of alert()
+    function showSubmissionMessage(type) {
+        const modal = document.getElementById('custom-modal');
+        const title = document.getElementById('modal-title');
+        const message = document.getElementById('modal-message');
+        
+        if (type === 'donate') {
+            title.textContent = "Contribution Secured!";
+            message.textContent = "Thank you for investing in American Renewal. Your support is vital.";
+        } else if (type === 'volunteer') {
+            title.textContent = "Welcome to the Team!";
+            message.textContent = "Your volunteer application has been received. A local organizer will contact you soon.";
+        } else if (type === 'social') {
+            title.textContent = "Share Your Story";
+            message.textContent = "This would link out to a social sharing form. Let the world know why you support Governor Newsom!";
+        }
+        
+        modal.style.display = 'flex';
+    }
+
+    // Donation Amount Selection Logic and Styling
+    function selectAmount(btn, amount) {
+        const donationButtons = document.querySelectorAll('.donation-btn');
+        const customAmountInput = document.getElementById('custom-amount');
+        
+        // Define styles for active/default states
+        const selectedStyle = `background: var(--primary-blue); color: white; border-color: var(--dark-blue); box-shadow: 0 3px 10px rgba(0,0,0,0.2); transform: translateY(-1px);`;
+        const defaultStyle = `background: #f0f0f0; color: #333; border: 2px solid #ccc; box-shadow: none; transform: none;`;
+
+        donationButtons.forEach(b => {
+            b.classList.remove('active');
+            b.style.cssText = defaultStyle;
+        });
+        
+        btn.classList.add('active');
+        btn.style.cssText = selectedStyle;
+        customAmountInput.value = '$' + amount;
+        customAmountInput.style.borderColor = '#ddd'; // Reset border color
+    }
+    
+    // Custom amount input listener to reset button styles
+    document.getElementById('custom-amount').addEventListener('input', function() {
+        const donationButtons = document.querySelectorAll('.donation-btn');
+        const defaultStyle = `background: #f0f0f0; color: #333; border: 2px solid #ccc; box-shadow: none; transform: none;`;
+        donationButtons.forEach(btn => {
+            btn.classList.remove('active');
+            btn.style.cssText = defaultStyle;
+        });
+        this.value = this.value.replace(/[^0-9\.]/g, ''); // Basic sanitization
+    });
+    
+    // --- TABBED AGENDA LOGIC ---
+    function setupTabs() {
+        const tabs = document.querySelectorAll('.tab-button');
+        const contentContainer = document.getElementById('tab-content-container');
+
+        // Initial default styles for buttons
+        const defaultButtonStyle = `background: #f4f7f9; color: #666; border-bottom: 4px solid transparent; transform: none; box-shadow: none;`;
+
+        tabs.forEach(tab => {
+            tab.style.cssText = defaultButtonStyle; // Apply default state initially
+            tab.addEventListener('click', () => {
+                const targetTabId = tab.dataset.tab;
+
+                // Deactivate all buttons
+                tabs.forEach(b => {
+                    b.classList.remove('active');
+                    b.style.cssText = defaultButtonStyle;
+                });
+                
+                // Activate clicked button
+                tab.classList.add('active');
+                tab.style.cssText = `color: var(--primary-blue); background: white; border-bottom: 4px solid var(--primary-blue); transform: translateY(2px); box-shadow: 0 -2px 10px rgba(0, 85, 164, 0.1);`;
+
+                // Hide all content
+                contentContainer.querySelectorAll('.tab-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+
+                // Show target content
+                const targetContent = document.getElementById('tab-' + targetTabId);
+                if (targetContent) {
+                    targetContent.style.display = 'block';
+                }
+            });
+        });
+        
+        // Initial activation of the first tab
+        if (tabs.length > 0) {
+            tabs[0].click();
+        }
+    }
+    
+
+    // --- INITIALIZATION ---
+    document.addEventListener('DOMContentLoaded', () => {
+        // Setup initial scroll animations and navigation
+        showPage('home'); 
+        setupTabs();
+        
+        // Set initial donation button style
+        const defaultDonationButton = document.querySelector('.donation-btn.active');
+        if (defaultDonationButton) {
+             const selectedStyle = `background: var(--primary-blue); color: white; border-color: var(--dark-blue); box-shadow: 0 3px 10px rgba(0,0,0,0.2); transform: translateY(-1px);`;
+             defaultDonationButton.style.cssText = selectedStyle;
+        }
+    });
+</script>
+
+</body>
+</html>
